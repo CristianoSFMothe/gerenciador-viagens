@@ -1,6 +1,6 @@
 <h1 align="center">Curso de API Rest</h1>
 
-![api.jpeg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Fapi.jpeg)
+![api](https://user-images.githubusercontent.com/68359459/215295002-8f34c792-9dad-4ddd-b5a8-62d90cd7c070.jpeg)
 
 
 # O que é a API RESTful?
@@ -67,8 +67,6 @@ Agora que já conheceu um pouco mais sobre o REST, está na hora de entender o q
 ---
 # Quais são os benefícios das APIs RESTful?
 
-
-
 APIs RESTful incluem os seguintes benefícios:
 
 * **Escalabilidade:** Os sistemas que implementam APIs REST podem ser escalados com eficiência, porque a REST otimiza as interações entre cliente e servidor
@@ -79,7 +77,8 @@ APIs RESTful incluem os seguintes benefícios:
 
 # Como funcionam as APIs RESTful?
 
-![API-page-graphic.png](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2FAPI-page-graphic.png)
+![API-page-graphic](https://user-images.githubusercontent.com/68359459/215295017-9123c69a-1d31-4e4a-bb0d-171ddd32939d.png)
+
 
 A função básica de uma API RESTful é a mesma de navegar na internet. O cliente entra em contato com o servidor usando a API quando requer um recurso. Os desenvolvedores de API explicam como o cliente deve usar API REST na documentação da API da aplicação do servidor. Estas são as etapas gerais para qualquer chamada de API REST:
 
@@ -130,7 +129,7 @@ As autenticações mais comuns da API RESTful são:
 
 ## Autenticação de HTTP
 
-![api-identity-pt.png](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Fapi-identity-pt.png)
+![api-identity-pt](https://user-images.githubusercontent.com/68359459/215295029-7e868b06-8fb4-4ae9-b31e-749edf1a7811.png)
 
 O HTTP define alguns esquemas de autenticação que pode usar diretamente ao implementar a API REST. Estes são dois desses esquemas:
 
@@ -143,7 +142,6 @@ As chaves de API são outra opção para autenticação da API REST. Nessa abord
 
 ## OAuth
 OAuth combina senhas e tokens para acesso de login altamente seguro a qualquer sistema. Primeiro, o servidor solicita uma senha e, depois, um token adicional para concluir o processo de autorização. Ele pode verificar o token a qualquer momento e também ao longo do tempo com escopo e longevidade específicos.
-
 
 # Gerenciador de Viagens
 
@@ -173,7 +171,7 @@ Trata-se de uma aplicação open source que auxilia desenvolvedores nos processo
 
 Para acessar a página <a href="http://localhost:8089/api/swagger-ui.html" targe="blank">http://localhost:8089/api/swagger-ui.html</a> teremos acesso a página do **Swwager** com a documentação
 
-![swagger.png](..%2F..%2F..%2F..%2FPictures%2Fposts%2Fswagger.png)
+![swagger-viagem](https://user-images.githubusercontent.com/68359459/215295074-da3eee84-f638-4e3f-a7da-0b10480a0c60.jpg)
 
 ## Aunteticado via CURL
 
