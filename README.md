@@ -1,5 +1,8 @@
 <h1 align="center">Curso de API Rest</h1>
 
+![api.jpeg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Fapi.jpeg)
+
+
 # O que é a API RESTful?
 
 A API RESTful é uma interface que dois sistemas de computador usam para trocar informações de forma segura pela internet. A maioria das aplicações de negócios precisa se comunicar com outras aplicações internas e de terceiros para executar várias tarefas. Por exemplo, para gerar contracheques mensais, seu sistema interno de contas precisa compartilhar dados com o sistema bancário de seu cliente a fim de automatizar o faturamento e se comunicar com uma aplicação interna de planilha de horas. As APIs RESTful suportam essa troca de informações porque seguem padrões de comunicação de software seguro, confiáveis e eficientes.
@@ -61,8 +64,85 @@ Agora que já conheceu um pouco mais sobre o REST, está na hora de entender o q
 * **REST:** representa um apanhado de princípios de arquitetura,
 * **RESTful:** representa a condição de um sistema específico em aplicar os conceitos de REST.
 
+---
+# Quais são os benefícios das APIs RESTful?
 
 
+
+APIs RESTful incluem os seguintes benefícios:
+
+* **Escalabilidade:** Os sistemas que implementam APIs REST podem ser escalados com eficiência, porque a REST otimiza as interações entre cliente e servidor
+* **Flexibilidade:** Os serviços da Web RESTful permitem a separação total do cliente do servidor. Eles simplificam e desacoplam vários componentes do servidor para que cada parte possa evoluir independentemente. Mudanças de plataforma ou tecnologia na aplicação do servidor não afetam a aplicação do cliente. A capacidade de camadas de funções de aplicações aumenta a flexibilidade.
+* **Independência:** APIs REST são independentes da tecnologia usada. Você pode escrever aplicações de cliente e servidor em várias linguagens de programação sem afetar o design da API. Também é possível alterar a tecnologia subjacente em ambos os lados sem afetar a comunicação.
+
+---
+
+# Como funcionam as APIs RESTful?
+
+![API-page-graphic.png](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2FAPI-page-graphic.png)
+
+A função básica de uma API RESTful é a mesma de navegar na internet. O cliente entra em contato com o servidor usando a API quando requer um recurso. Os desenvolvedores de API explicam como o cliente deve usar API REST na documentação da API da aplicação do servidor. Estas são as etapas gerais para qualquer chamada de API REST:
+
+1. O cliente envia uma solicitação ao servidor. O cliente segue a documentação da API para formatar a solicitação de modo que o servidor entenda.
+2. O servidor autentica o cliente e confirma que o cliente tem o direito de fazer essa solicitação.
+3. O servidor recebe a solicitação e a processa internamente.
+4. O servidor retorna uma resposta ao cliente. A resposta contém informações que indicam ao cliente se a solicitação foi bem-sucedida. A resposta também inclui informações solicitadas pelo cliente.
+
+Os detalhes de solicitação e resposta da API REST variam um pouco, dependendo de como os desenvolvedores da API projetam a API.
+
+---
+
+# O que contém a solicitação do cliente da API RESTful?
+
+As APIs RESTful exigem que as solicitações contenham os seguintes componentes principais:
+
+## Identificador de recurso exclusivo
+
+O servidor identifica cada recurso com identificadores de recursos exclusivos. Para serviços REST, o servidor normalmente realiza a identificação de recursos usando um **_uniform resource locator_** (URL – localizador de recurso uniforme). O URL especifica o caminho para o recurso.
+O URL também é chamado **endpoint** de solicitação e específica ao servidor o que o cliente requer.
+
+## Método
+
+Os desenvolvedores geralmente implementam APIs RESTful usando o **_Hypertext Transfer Protocol_** (Protocolo de Transferência de Hipertexto). Um método HTTP informa ao servidor o que ele precisa fazer com o recurso.
+
+* **GET:** Os clientes usam GET para acessar recursos localizados no URL especificado no servidor. Eles podem armazenar em cache solicitações GET e enviar parâmetros na solicitação da API RESTful para instruir o servidor a filtrar dados antes de enviar.
+* **POST:** Os clientes usam POST para enviar dados ao servidor. Eles incluem a representação de dados com a solicitação. Se enviarem a mesma solicitação POST várias vezes, criarão o mesmo recurso várias vezes.
+* **PUT:** Os clientes usam PUT para atualizar recursos existentes no servidor. Ao contrário do POST, o envio da mesma solicitação PUT várias vezes em um serviço da Web RESTful tem o mesmo resultado.
+* **DELETE:** Os clientes usam a solicitação DELETE para remover o recurso. Uma solicitação DELETE pode alterar o estado do servidor. No entanto, se o usuário não tiver a autenticação apropriada, a solicitação falhará.
+
+## Cabeçalhos HTTP
+
+Os cabeçalhos de solicitação são os metadados trocados entre o cliente e o servidor. Por exemplo, o cabeçalho da solicitação indica o formato da solicitação e da resposta, fornece informações sobre o **status** da solicitação e assim por diante.
+
+* **Dados:** As solicitações da API REST podem incluir dados para POST, PUT e outros métodos HTTP para funcionarem com êxito.
+
+* **Parâmetros:** As solicitações da API RESTful podem incluir parâmetros que fornecem ao servidor mais detalhes sobre o que precisa ser feito. A seguir, estão alguns tipos diferentes de parâmetro.
+
+1. Parâmetros de caminho que especificam detalhes do URL.
+2. Parâmetros de consulta que solicitam mais informações sobre o recurso.
+3. Parâmetros de cookies que autenticam clientes rapidamente.
+
+# O que são métodos de autenticação da API RESTful?
+
+Um serviço da Web RESTful deve autenticar solicitações antes de enviar uma resposta. Autenticação é o processo de verificação de uma identidade.
+
+As autenticações mais comuns da API RESTful são:
+
+## Autenticação de HTTP
+
+![api-identity-pt.png](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Fapi-identity-pt.png)
+
+O HTTP define alguns esquemas de autenticação que pode usar diretamente ao implementar a API REST. Estes são dois desses esquemas:
+
+* **Autenticação básica:** Na autenticação básica, o cliente envia o nome de usuário e a senha no cabeçalho da solicitação. Ele os codifica com base64, que é uma técnica de codificação que converte o par em um conjunto de 64 caracteres para transmissão segura.
+
+* **Autenticação do portador:** O termo autenticação do portador se refere ao processo de dar controle de acesso ao portador do token. O token do portador é normalmente uma cadeia de caracteres criptografada que o servidor gera em resposta a uma solicitação de login. O cliente envia o token nos cabeçalhos de solicitação para acessar recursos.
+
+## Chaves de API
+As chaves de API são outra opção para autenticação da API REST. Nessa abordagem, o servidor atribui um valor gerado exclusivo a um cliente iniciante. Sempre que o cliente tenta acessar recursos, ele usa a chave de API exclusiva para verificar a si mesmo. As chaves de API são menos seguras porque o cliente precisa transmitir a chave, o que a torna vulnerável a roubo de rede.
+
+## OAuth
+OAuth combina senhas e tokens para acesso de login altamente seguro a qualquer sistema. Primeiro, o servidor solicita uma senha e, depois, um token adicional para concluir o processo de autorização. Ele pode verificar o token a qualquer momento e também ao longo do tempo com escopo e longevidade específicos.
 
 
 # Gerenciador de Viagens
