@@ -594,11 +594,13 @@ Recebendo esse JSON na requisição
 }
 ```
 
+---
+
 # Insomnia Rest
 
 Outra forma de podemos testar a nossa API e usando uma ferramenta gráfica, nesse caso iremos utilizar inicialmente o <a href="https://insomnia.rest/" target="blank">Insomnia</a>
 
-![insomnia.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomnia.jpg)
+![insomnia](https://user-images.githubusercontent.com/68359459/215357833-346efb59-258e-467a-9fb6-8eac4872d215.jpg)
 
 ## Autenticando usuário
 
@@ -615,9 +617,12 @@ Outra forma de podemos testar a nossa API e usando uma ferramenta gráfica, ness
 
 * Antes de tudo, podemos configura no **Insomnia** a nossa **URL** base
 
-![insomnia1.png](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomnia1.png)
+<img width="960" alt="insomnia1" src="https://user-images.githubusercontent.com/68359459/215357945-db6c3366-0ec6-4ab5-a2fa-1f4ea9effff0.png">
 
-![insomnia2.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomnia2.jpg)
+---
+
+![insomnia2](https://user-images.githubusercontent.com/68359459/215357960-190819ac-1a3f-4895-aa87-d209f35501f1.jpg)
+
 
 ```json
 {
@@ -627,44 +632,44 @@ Outra forma de podemos testar a nossa API e usando uma ferramenta gráfica, ness
 
 * Assim ou executar obtemos facilmente o token do usuário de forma visual, em que melhora e muito a leitura e o entendimento, além de ganho na produção
 
-![insomnia3.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomnia3.jpg)
+![insomnia3](https://user-images.githubusercontent.com/68359459/215357980-3693b1c8-4fc8-4df4-b15d-c3d3d5e067d7.jpg)
 
-![insomnia-headers.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomnia-headers.jpg)
+![insomnia-headers](https://user-images.githubusercontent.com/68359459/215358033-418c9bb8-15ec-44cd-8edd-2cae871b39de.jpg)
 
 ## Consultando todas as viagens cadastradas 
 
 1. Primeiramente temos que inserir um novo endpoint do tipo **GET**
 
-![inserir-new-request-get.png](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finserir-new-request-get.png)
+<img width="958" alt="inserir-new-request-get" src="https://user-images.githubusercontent.com/68359459/215358052-534f0c8c-2e50-4aa8-ac52-9bd5a79ff4a1.png">
 
-![insomnia-get.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomnia-get.jpg)
+![insomnia-get](https://user-images.githubusercontent.com/68359459/215358067-fd6b9338-8d31-4e78-844d-78766db5a3e4.jpg)
 
 2. Criando a **Environment** (variável de ambiente) do token
 
-![insomnia-var-token-user.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomnia-var-token-user.jpg)
+![insomnia-var-token-user](https://user-images.githubusercontent.com/68359459/215358075-212de018-c555-4368-83e3-07cfe8b932b5.jpg)
 
 Porém, esse recurso não e muito bem aplicado no casso dessa API, pois toda vez que fazer uma request de autenticação, irá gerar um novo token, podemos solucionar esse problema da seguinte forma, ao invés de usar o token com uma variável, podemos usar um recurso do próprio Insomnia nos disponibilizar
 Que é capturando o atributo de outra requisição
 
-![insomnia-bady-attribute.png](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomnia-bady-attribute.png)
+<img width="961" alt="insomnia-bady-attribute" src="https://user-images.githubusercontent.com/68359459/215358081-8ae3f3c4-5b08-4a11-8de2-de90353d32a0.png">
 
 * Configurando o response body attribute
 
   * Informa qual o **Request** que quer captura o dado
   * Criar o filtro do dado há ser capturado
   * Verificar que foi obtido o token com sucesso
-  
-![insomnia-config-attribute-response-body.png](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomnia-config-attribute-response-body.png)
+
+<img width="961" alt="insomnia-config-attribute-response-body" src="https://user-images.githubusercontent.com/68359459/215358153-336c785b-356d-4a0f-8b78-763501743fb9.png">
 
 3. Podendo assim facilmente configura as outras requisições do tipo GET
 
 * Por ID de viagem
 
-![insomnia-get-one.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomnia-get-one.jpg)
+![insomnia-get-one](https://user-images.githubusercontent.com/68359459/215358176-282dc8df-0f10-4779-9ea0-2f1ea4c4b57e.jpg)
 
 * Por paramêtro de região 
 
-![insomnia-get-parament.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomnia-get-parament.jpg)
+![insomnia-get-parament](https://user-images.githubusercontent.com/68359459/215358185-aabd5059-5b1f-47d0-a401-e2dc62e590b9.jpg)
 
 ## Cadastrar outras viagens
 
@@ -682,7 +687,7 @@ Que é capturando o atributo de outra requisição
 
 * Executar o endpoint
 
-![insomina-post-forbidden.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomina-post-forbidden.jpg)
+![insomina-post-forbidden](https://user-images.githubusercontent.com/68359459/215358215-893dc5bc-af93-44dd-9e12-5aadfde51806.jpg)
 
 Obtemos um **404 - Forbidden** de acesso negado, pois estamos há cadastrar uma viagem com o token do usuário com previlegios de usuário comum, onde não é permitido cadastra uma viagem
 
@@ -697,6 +702,7 @@ Obtemos um **404 - Forbidden** de acesso negado, pois estamos há cadastrar uma 
 
 2. Alterando no **Response => Body Attibute** a requisição que desejamos captura o token
 
-![insomnia-alter-attribute-request.png](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomnia-alter-attribute-request.png)
+<img width="960" alt="insomnia-alter-attribute-request" src="https://user-images.githubusercontent.com/68359459/215358233-3c1ca063-ba85-48b4-bf01-bdcbda476a1b.png">
 
-![insomnia-post-admin.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomnia-post-admin.jpg)
+![insomnia-post-admin](https://user-images.githubusercontent.com/68359459/215358246-067e014a-4490-4e81-847c-59ec9558a4d5.jpg)
+
