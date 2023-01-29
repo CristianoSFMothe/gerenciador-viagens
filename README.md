@@ -4,6 +4,25 @@
     <img src="https://user-images.githubusercontent.com/68359459/215295002-8f34c792-9dad-4ddd-b5a8-62d90cd7c070.jpeg" alt="API RESTfull" />
 </div>
 
+<div align="center">
+    <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/CristianoSFMothe/gerenciador-viagens">
+    <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/CristianoSFMothe/gerenciador-viagens">
+    <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/CristianoSFMothe/gerenciador-viagens">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg">  
+    <br />
+    <img alt="Spring" src="https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white">
+    <img alt="IntelliJ IDE" src="https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white">
+    <img alt="Java" src="https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white">
+    <img alt="Apache Maven" src="https://img.shields.io/badge/Apache%20Maven-C71A36?style=for-the-badge&logo=Apache%20Maven&logoColor=white">
+    <img alt="Testing-Library" src="https://img.shields.io/badge/-TestingLibrary-%23E33332?style=for-the-badge&logo=testing-library&logoColor=white">
+</div>
+
+
+
+## :boy:About me
+
+<a href="https://github.com/CristiaDaSilvaFerreira" alt="github" target="_blank"><img height="32" src="https://img.shields.io/badge/GitHub-000000?&style=flat-square&logo=GitHub&logoColor=white"></a> <a href="https://www.linkedin.com/in/cristiano-da-silva-ferreira" alt="linkedin" target="_blank"> <img height="32" src="https://img.shields.io/badge/LinkedIn-%230077B5.svg?&style=flat-square&logo=linkedin&logoColor=white"></a> 
+
 # O que é a API RESTful?
 
 A API RESTful é uma interface que dois sistemas de computador usam para trocar informações de forma segura pela internet. A maioria das aplicações de negócios precisa se comunicar com outras aplicações internas e de terceiros para executar várias tarefas. Por exemplo, para gerar contracheques mensais, seu sistema interno de contas precisa compartilhar dados com o sistema bancário de seu cliente a fim de automatizar o faturamento e se comunicar com uma aplicação interna de planilha de horas. As APIs RESTful suportam essa troca de informações porque seguem padrões de comunicação de software seguro, confiáveis e eficientes.
