@@ -1,7 +1,8 @@
 <h1 align="center">Curso de API Rest</h1>
 
-![api](https://user-images.githubusercontent.com/68359459/215295002-8f34c792-9dad-4ddd-b5a8-62d90cd7c070.jpeg)
-
+<div align="center">
+    <img src="https://user-images.githubusercontent.com/68359459/215295002-8f34c792-9dad-4ddd-b5a8-62d90cd7c070.jpeg" alt="API RESTfull" />
+</div>
 
 # O que é a API RESTful?
 
@@ -121,6 +122,8 @@ Os cabeçalhos de solicitação são os metadados trocados entre o cliente e o s
 2. Parâmetros de consulta que solicitam mais informações sobre o recurso.
 3. Parâmetros de cookies que autenticam clientes rapidamente.
 
+---
+
 # O que são métodos de autenticação da API RESTful?
 
 Um serviço da Web RESTful deve autenticar solicitações antes de enviar uma resposta. Autenticação é o processo de verificação de uma identidade.
@@ -143,6 +146,8 @@ As chaves de API são outra opção para autenticação da API REST. Nessa abord
 ## OAuth
 OAuth combina senhas e tokens para acesso de login altamente seguro a qualquer sistema. Primeiro, o servidor solicita uma senha e, depois, um token adicional para concluir o processo de autorização. Ele pode verificar o token a qualquer momento e também ao longo do tempo com escopo e longevidade específicos.
 
+---
+
 # Gerenciador de Viagens
 
 > Este é um repositório para aprender um pouco mais sobre APIs REST.
@@ -162,6 +167,8 @@ $ curl -X GET http://localhost:8089/api/v1/status
 ```
 Se no terminal aparece a seguinte mensagem **Aplicação está funcionando corretamente** isso quer dizer que o serviço está disponivel 
 
+---
+
 # Swagger
 
 ## O que é Swagger?
@@ -175,10 +182,30 @@ Para acessar a página <a href="http://localhost:8089/api/swagger-ui.html" targe
 
 ## Aunteticado via CURL
 
+Para realizar uma autentição, temos que enviar o seguinte body:
+
+```json
+{
+  "email": "string",
+  "senha": "string"
+}
+```
+
 Para realizar uma request de autenticação via CURL com o seguinte comando:
 
 ```bash
 $ curl -X POST http://localhost:8089/api/v1/auth -d '{ "email": "admin@email.com", "senha": "654321" }' -H 'Content-Type: application/json'
+```
+
+Nesse casa recebemos esse JSON
+
+```json
+{
+  "data": {
+    "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBlbWFpbC5jb20iLCJyb2xlIjoiUk9MRV9BRE1JTiIsImNyZWF0ZWQiOjE2NzQ5NDkxNzUzNjcsImV4cCI6MTY3NTA0OTE3NH0.nn-_XJ_jfMOSDkxZgp_pM4QvlCDcznOiLnqsVNNUgkCnLLK7BEDTktbXHEktLUFKz7nDZ3dMxjCUU6aPVkf9VQ"
+  },
+  "errors": []
+}
 ```
 Onde:
 
@@ -225,9 +252,175 @@ Para esconder o _time_ que exiber do tempo que levou para baixar a aplicação i
 
 ```bash
 $ curl -X POST -is http://localhost:8089/api/v1/auth -d '{ "email": "admin@email.com", "senha": "654321" }' -H 'Content-Type: application/json'
+HTTP/1.1 200
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Date: Sat, 28 Jan 2023 23:14:37 GMT
+
+{"data":{"token":"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBlbWFpbC5jb20iLCJyb2xlIjoiUk9MRV9BRE1JTiIsImNyZWF0ZWQiOjE2NzQ5NDc2Nzc5ODUsImV4cCI6MTY3NTA0NzY3Nn0.y_fftMO0nu5uZOVWpNfF22rrhY2TeZcFmNpeXdxl1B3M1EMx2bvr9PlezVzUBxbZi79qAHNy891XUKIp7narOA"},"errors":[]}
+
 ```
 
+## Cadastrar uma viagem via CURL
 
+* Como usuário administrador
+
+Para realizar o cadastro de uma viagem, olhando no Swagger podemos observar que teremos que enviar esse JSON
+
+```json
+{
+  "acompanhante": "string",
+  "dataPartida": "string",
+  "dataRetorno": "string",
+  "localDeDestino": "string",
+  "regiao": "string"
+}
+```
+
+> OBS.: Estanto primeiramente autorizado na API
+
+Estando autenticado na aplicação como um administrado, pode-se agora cadastrar uma viagem, como o comando:
+
+```bash
+$ curl -X POST -is http://localhost:8089/api/v1/viagens -d '{ "acompanhante": "Aline", "dataPartida": "2023-01-28", "dataRetorno": "2023-02-28", "localDeDestino": "Santa Catarina", "regiao": "Sul"  }' -H 'Content-Type: application/json' -H 'Authorization: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBlbWFpbC5jb20iLCJyb2xlIjoiUk9MRV9BRE1JTiIsImNyZWF0ZWQiOjE2NzQ5NDg0MTM1OTYsImV4cCI6MTY3NTA0ODQxMn0.tE8GY8AvGapWZL7Q9vwf2NH9YIlAsxou4klQJsGKVG_BFm4iBEY4zG-n1qOfEbzleCjEHZ5zU5DQlFNKcYbOnw'
+```
+
+Onde iremos obter a seguinte resposta:
+
+```bash
+HTTP/1.1 201
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Location: http://localhost:8089/api/v1/viagens/1
+Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Date: Sat, 28 Jan 2023 23:29:21 GMT
+
+{"data":{"id":1,"localDeDestino":"Santa Catarina","dataPartida":"2023-01-28","dataRetorno":"2023-02-28","acompanhante":"Aline","regiao":"Sul"},"errors":[]}
+```
+
+Recebendo esse JSON como response
+
+```json
+{
+  "data": {
+    "id": 1,
+    "localDeDestino": "Santa Catarina",
+    "dataPartida": "2023-01-28",
+    "dataRetorno": "2023-02-28",
+    "acompanhante": "Aline",
+    "regiao": "Sul"
+  },
+  "errors": []
+}
+```
+
+Caso não informe o Token como no comando abaixo
+
+```bash
+$ curl -X POST -is http://localhost:8089/api/v1/viagens -d '{ "acompanhante": "Aline", "dataPartida": "2023-01-28", "dataRetorno": "2023-02-28", "localDeDestino": "Santa Catarina", "regiao": "Sul"  }' -H 'Content-Type: application/json' -H 'Authorization: '
+```
+
+```bash
+HTTP/1.1 401
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Date: Sat, 28 Jan 2023 23:48:59 GMT
+
+{"timestamp":"2023-01-28T23:48:59.085+0000","status":401,"error":"Unauthorized","message":"Acesso negado. Você deve estar autenticado no sistema para acessar a URL solicitada.","path":"/api/v1/viagens"}
+```
+Recebemos o **status code** 401 que quer dizer **Unauthorized**, ou seja, a requisição foi enviada, mas não foi autorizada
+
+```json
+{
+  "timestamp": "2023-01-28T23:48:59.085+0000",
+  "status": 401,
+  "error": "Unauthorized",
+  "message": "Acesso negado. Você deve estar autenticado no sistema para acessar a URL solicitada.",
+  "path": "/api/v1/viagens"
+}
+```
+* Com usuário comum
+
+Realizando o login como usuário comum atráves do CURL com o seguinte comando:
+
+```bash
+curl -X POST -is http://localhost:8089/api/v1/auth -d '{ "email": "usuario@email.com", "senha": "123456" }' -H 'Content-Type: application/json'
+```
+Recebemos essa resposta
+
+```bash
+HTTP/1.1 200
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Date: Sat, 28 Jan 2023 23:58:15 GMT
+
+{"data":{"token":"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGVtYWlsLmNvbSIsInJvbGUiOiJST0xFX1VTVUFSSU8iLCJjcmVhdGVkIjoxNjc0OTUwMjk1NDgwLCJleHAiOjE2NzUwNTAyOTR9.nb7D18mXpZNRxyaxX1BnSS3thOR1oqLrIVEPa6SUDn5RVIZMM_y8strrT8DuIgan7SQEfsyepNL7-RCnF5s2uQ"},"errors":[]}
+```
+
+```json
+{
+  "data": {
+    "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGVtYWlsLmNvbSIsInJvbGUiOiJST0xFX1VTVUFSSU8iLCJjcmVhdGVkIjoxNjc0OTUwMjk1NDgwLCJleHAiOjE2NzUwNTAyOTR9.nb7D18mXpZNRxyaxX1BnSS3thOR1oqLrIVEPa6SUDn5RVIZMM_y8strrT8DuIgan7SQEfsyepNL7-RCnF5s2uQ"
+  },
+  "errors": []
+}
+```
+Enviando novamente a requisição para cadastrar uma viagem, mas dessa vez como usuário comum
+
+```bash
+ curl -X POST -is http://localhost:8089/api/v1/viagens -d '{ "acompanhante": "Aline", "dataPartida": "2023-01-28", "dataRetorno": "2023-02-28", "localDeDestino": "Santa Catarina", "regiao": "Sul"  }' -H 'Content-Type: application/json' -H 'Authorization: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGVtYWlsLmNvbSIsInJvbGUiOiJST0xFX1VTVUFSSU8iLCJjcmVhdGVkIjoxNjc0OTUwMjk1NDgwLCJleHAiOjE2NzUwNTAyOTR9.nb7D18mXpZNRxyaxX1BnSS3thOR1oqLrIVEPa6SUDn5RVIZMM_y8strrT8DuIgan7SQEfsyepNL7-RCnF5s2uQ'
+```
+
+```bash
+HTTP/1.1 403
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Date: Sun, 29 Jan 2023 00:01:25 GMT
+
+{"timestamp":"2023-01-29T00:01:25.703+0000","status":403,"error":"Forbidden","exception":"org.springframework.security.access.AccessDeniedException","message":"Acesso negado","path":"/api/v1/viagens"}
+```
+
+Observando o JSON podemos ver que recebemos o **status code** **403 Forbidden**  indica que o servidor entendeu o pedido, mas se recusa a autorizá-lo.
+
+```json
+{
+  "timestamp": "2023-01-29T00:01:25.703+0000",
+  "status": 403,
+  "error": "Forbidden",
+  "exception": "org.springframework.security.access.AccessDeniedException",
+  "message": "Acesso negado",
+  "path": "/api/v1/viagens"
+}
+```
 
 
 
