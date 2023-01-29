@@ -209,8 +209,11 @@ Nesse casa recebemos esse JSON
 ```
 Onde:
 
-* `-d` e de Data: que será enviando o corpo do bady do JSON
-* `-h` que de Header: que irá ser informando o Header da aplicação
+* `-i`, --include	Mostra o header da resposta no output
+* `-d`, --bady	Dados a serem enviados no POST
+* `-H`, --header	Envia o header da requisição
+* `-X`, --request	Especifica o método HTTP a ser usado na requisição
+
 
 ```bash
 $ curl -X POST http://localhost:8089/api/v1/auth -d '{ "email": "admin@email.com", "senha": "654321" }' -H 'Content-Type: application/json'
@@ -361,7 +364,7 @@ Recebemos o **status code** 401 que quer dizer **Unauthorized**, ou seja, a requ
 Realizando o login como usuário comum atráves do CURL com o seguinte comando:
 
 ```bash
-curl -X POST -is http://localhost:8089/api/v1/auth -d '{ "email": "usuario@email.com", "senha": "123456" }' -H 'Content-Type: application/json'
+$ curl -X POST -is http://localhost:8089/api/v1/auth -d '{ "email": "usuario@email.com", "senha": "123456" }' -H 'Content-Type: application/json'
 ```
 Recebemos essa resposta
 
@@ -391,7 +394,7 @@ Date: Sat, 28 Jan 2023 23:58:15 GMT
 Enviando novamente a requisição para cadastrar uma viagem, mas dessa vez como usuário comum
 
 ```bash
- curl -X POST -is http://localhost:8089/api/v1/viagens -d '{ "acompanhante": "Aline", "dataPartida": "2023-01-28", "dataRetorno": "2023-02-28", "localDeDestino": "Santa Catarina", "regiao": "Sul"  }' -H 'Content-Type: application/json' -H 'Authorization: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGVtYWlsLmNvbSIsInJvbGUiOiJST0xFX1VTVUFSSU8iLCJjcmVhdGVkIjoxNjc0OTUwMjk1NDgwLCJleHAiOjE2NzUwNTAyOTR9.nb7D18mXpZNRxyaxX1BnSS3thOR1oqLrIVEPa6SUDn5RVIZMM_y8strrT8DuIgan7SQEfsyepNL7-RCnF5s2uQ'
+$ curl -X POST -is http://localhost:8089/api/v1/viagens -d '{ "acompanhante": "Aline", "dataPartida": "2023-01-28", "dataRetorno": "2023-02-28", "localDeDestino": "Santa Catarina", "regiao": "Sul"  }' -H 'Content-Type: application/json' -H 'Authorization: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGVtYWlsLmNvbSIsInJvbGUiOiJST0xFX1VTVUFSSU8iLCJjcmVhdGVkIjoxNjc0OTUwMjk1NDgwLCJleHAiOjE2NzUwNTAyOTR9.nb7D18mXpZNRxyaxX1BnSS3thOR1oqLrIVEPa6SUDn5RVIZMM_y8strrT8DuIgan7SQEfsyepNL7-RCnF5s2uQ'
 ```
 
 ```bash
@@ -421,7 +424,128 @@ Observando o JSON podemos ver que recebemos o **status code** **403 Forbidden** 
   "path": "/api/v1/viagens"
 }
 ```
+# Consultando os dados - GET
 
+Para consulta todas a viagens cadastradas, realiza-se **GET** via CURL, é necessário fazer isso com o **usuário comum**, para pode logar com ele com o comando:
 
+```bash
+$ curl -X POST -is http://localhost:8089/api/v1/auth -d '{ "email": "usuario@email.com", "senha": "123456" }' -H 'Content-Type: application/json'
+```
 
+```bash
+HTTP/1.1 200
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Date: Sun, 29 Jan 2023 01:35:11 GMT
 
+{"data":{"token":"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGVtYWlsLmNvbSIsInJvbGUiOiJST0xFX1VTVUFSSU8iLCJjcmVhdGVkIjoxNjc0OTU2MTExNTU0LCJleHAiOjE2NzUwNTYxMTB9.ltTrvj1fr8pGHqMXo-U-njeKVjH0jxC3U6wvTpZHNJpEp2frvrt0MZ6UENYvPum1BNws1DW1fBvuOP-5avzMog"},"errors":[]}
+```
+
+```json
+{
+  "data": {
+    "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGVtYWlsLmNvbSIsInJvbGUiOiJST0xFX1VTVUFSSU8iLCJjcmVhdGVkIjoxNjc0OTU2MTExNTU0LCJleHAiOjE2NzUwNTYxMTB9.ltTrvj1fr8pGHqMXo-U-njeKVjH0jxC3U6wvTpZHNJpEp2frvrt0MZ6UENYvPum1BNws1DW1fBvuOP-5avzMog"
+  },
+  "errors": []
+}
+```
+
+Tento o token do usuário atráves da autenticação realizada, poder ser usar o entpoit de consulta das viagens cadastradas
+
+```bash
+$ curl -X GET -is http://localhost:8089/api/v1/viagens -H 'Authorization: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGVtYWlsLmNvbSIsInJvbGUiOiJST0xFX1VTVUFSSU8iLCJjcmVhdGVkIjoxNjc0OTU2MTExNTU0LCJleHAiOjE2NzUwNTYxMTB9.ltTrvj1fr8pGHqMXo-U-njeKVjH0jxC3U6wvTpZHNJpEp2frvrt0MZ6UENYvPum1BNws1DW1fBvuOP-5avzMog'
+```
+Recebendo essa resposta no terminal
+
+```bash
+HTTP/1.1 200
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Date: Sun, 29 Jan 2023 01:38:26 GMT
+
+{"data":[{"id":1,"localDeDestino":"Santa Catarina","dataPartida":"2023-01-28","dataRetorno":"2023-02-28","acompanhante":"Aline","regiao":"Sul"}],"errors":[]}
+```
+Pode-se ver que receber esse JSON
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "localDeDestino": "Santa Catarina",
+      "dataPartida": "2023-01-28",
+      "dataRetorno": "2023-02-28",
+      "acompanhante": "Aline",
+      "regiao": "Sul"
+    },
+    {
+      "id": 2,
+      "localDeDestino": "Manaus",
+      "dataPartida": "2023-01-28",
+      "dataRetorno": "2023-02-28",
+      "acompanhante": "Aline",
+      "regiao": "Norte"
+    }
+  ],
+  "errors": []
+}
+```
+
+Também pode consultar as viagens passando por parâmetro via query uma informação, nesse caso seria a região, nesse caso o comando via CURL ficará da seguinte forma
+
+```bash
+$ curl -X GET -is http://localhost:8089/api/v1/viagens?regiao=Sul -H 'Authorization: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGVtYWlsLmNvbSIsInJvbGUiOiJST0xFX1VTVUFSSU8iLCJjcmVhdGVkIjoxNjc0OTU2MTExNTU0LCJleHAiOjE2NzUwNTYxMTB9.ltTrvj1fr8pGHqMXo-U-njeKVjH0jxC3U6wvTpZHNJpEp2frvrt0MZ6UENYvPum1BNws1DW1fBvuOP-5avzMog'
+```
+
+Para cunsulta uma única viagens, passa-se o ID via **path**, usa-se o comando 
+
+```bash
+curl -X GET -is http://localhost:8089/api/v1/viagens/2 -H 'Authorization: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGVtYWlsLmNvbSIsInJvbGUiOiJST0xFX1VTVUFSSU8iLCJjcmVhdGVkIjoxNjc1MDAwODI5NTY3LCJleHAiOjE2NzUxMDA4Mjh9._t8pwwB9Vpv1o1UKUmIFrIsGkX5lR00lthhGXadJ-djqdf-eomOlZVrSS6wm8zViJCMfg-RRtxNv7xPF-nqhdw'
+```
+
+```bash
+$ curl -X GET -is http://localhost:8089/api/v1/viagens/2 -H 'Authorization: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGVtYWlsLmNvbSIsInJvbGUiOiJST0xFX1VTVUFSSU8iLCJjcmVhdGVkIjoxNjc1MDAwODI5NTY3LCJleHAiOjE2NzUxMDA4Mjh9._t8pwwB9Vpv1o1UKUmIFrIsGkX5lR00lthhGXadJ-djqdf-eomOlZVrSS6wm8zViJCMfg-RRtxNv7xPF-nqhdw'
+
+# Body da requisição
+HTTP/1.1 200
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Date: Sun, 29 Jan 2023 14:01:31 GMT
+
+{"data":{"id":2,"localDeDestino":"Manaus","dataPartida":"2023-01-28","dataRetorno":"2023-02-28","acompanhante":"Aline","regiao":"Norte","temperatura":39.46},"errors":[]}
+```
+
+Recebendo esse JSON na requisição
+
+```json
+{
+  "data": {
+    "id": 2,
+    "localDeDestino": "Manaus",
+    "dataPartida": "2023-01-28",
+    "dataRetorno": "2023-02-28",
+    "acompanhante": "Aline",
+    "regiao": "Norte",
+    "temperatura": 39.46
+  },
+  "errors": []
+}
+```
