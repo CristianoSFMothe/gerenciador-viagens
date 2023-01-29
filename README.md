@@ -180,6 +180,50 @@ Para acessar a página <a href="http://localhost:8089/api/swagger-ui.html" targe
 
 ![swagger-viagem](https://user-images.githubusercontent.com/68359459/215295074-da3eee84-f638-4e3f-a7da-0b10480a0c60.jpg)
 
+--- 
+
+# O que é o curl?
+
+É uma ferramenta para transferir dados de/para um servidor, usando um dos protocolos suportados. Normalmente, usamos o HTTP, mas as opções são muitas, de **FTP** e **GOPHER** a **IMAP** e **LDAP**.
+
+* **FTP:** _File Transfer Protocol_ Em português, ele traduz-se como **Protocolo de Transferência de Arquivos**,  é um protocolo usado para transferir arquivos por uma rede de computadores, desde uma local à internet. Basicamente, permite a troca de arquivos entre dois computadores de modo direto, em que um ganha acesso às pastas do outro.
+  O protocolo é o meio mais antigo de transferir dados entre computadores de uma rede, tendo surgido em 1971 e usa o modelo cliente/servidor, onde o primeiro faz o acesso aos dados e o segundo os armazena.
+* **GOPHER:** é um método de comunicação desenhado para distribuir e procurar documentos na Internet. Esse processo permitiu que arquivos armazenados em servidores fossem acessados remotamente a partir de outros lugares. Este protocolo foi utilizado na Internet antes da web se tornar popular. Geralmente, o Gopher é um modelo somente em texto, sem imagens ou conteúdo multimídia, além de não permitir scripts.
+* **IMAP:** permite que acesse o seu email onde quer que esteja, de qualquer dispositivo. Ao ler uma mensagem de email usando o IMAP, não está realmente baixando ou armazenando-a no seu computador. Em vez disso, você está lendo-o do serviço de email. Como resultado, pode verificar o seu email de diferentes dispositivos, em qualquer lugar do mundo: seu telefone, um computador, um computador amigo.
+* **LDAP:** _Lightweight Directory Access Protocol_ é um protocolo que ajuda os usuários a localizar dados sobre organizações, pessoas e muito mais. O LDAP tem dois objetivos centrais: armazenar dados no diretório LDAP e autenticar o acesso de usuários a ele. Ele também oferece a linguagem de comunicação que as aplicações exigem para enviar e receber informações de serviços de diretório. Um serviço de diretório oferece acesso à localização das informações sobre organizações, indivíduos e outros dados em uma rede.
+
+O **cURL** é uma ferramenta de linha de comando que funciona como interface para a biblioteca que faz o serviço pesado, o libcurl.
+De forma geral, o seu navegador realiza requisições web, recebe respostas, lê/escreve cookies e renderiza a sua página.
+Ele oferece uma infinidade de funções úteis como realização de autenticação, interação com API's, preencher formulários HTML, download de arquivos e páginas HTML, etc.
+
+## Instalando: como ativar o cURL
+
+### No Linux
+
+* Para instalar, se for usuário de **GNU/Linux** e usar distribuições baseadas em Debian (como o Ubuntu), basta executar:
+
+```bash
+sudo apt install curl
+```
+
+* Para distros baseadas em Arch Linux execute:
+
+```bash
+sudo pacman -S curl
+```
+
+### No macOS
+
+* Há alguns anos o macOS já vem com o curl instalado. Execute curl --version para verificar.
+
+```bash
+brew install curl
+```
+
+### No Windows
+
+As últimas versões do Windows também já estão vindo com o curl por padrão. Mas pode baixar um <a href="http://www.confusedbycode.com/curl/" target="blank">instalador gráfico</a>. Após isso, o **cURL** deve estar em seu PATH e pronto para usar pelo **CMD** ou **PowerShell**.
+
 ## Aunteticado via CURL
 
 Para realizar uma autentição, temos que enviar o seguinte body:
@@ -549,3 +593,110 @@ Recebendo esse JSON na requisição
   "errors": []
 }
 ```
+
+# Insomnia Rest
+
+Outra forma de podemos testar a nossa API e usando uma ferramenta gráfica, nesse caso iremos utilizar inicialmente o <a href="https://insomnia.rest/" target="blank">Insomnia</a>
+
+![insomnia.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomnia.jpg)
+
+## Autenticando usuário
+
+> Autenticação do usuário com privilégio comum
+
+* Informando o body da request obtida no Swagger
+
+```json
+{
+  "email": "string",
+  "senha": "string"
+}
+```
+
+* Antes de tudo, podemos configura no **Insomnia** a nossa **URL** base
+
+![insomnia1.png](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomnia1.png)
+
+![insomnia2.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomnia2.jpg)
+
+```json
+{
+	"servidor": "http://localhost:8089/api"
+}
+```
+
+* Assim ou executar obtemos facilmente o token do usuário de forma visual, em que melhora e muito a leitura e o entendimento, além de ganho na produção
+
+![insomnia3.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomnia3.jpg)
+
+![insomnia-headers.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomnia-headers.jpg)
+
+## Consultando todas as viagens cadastradas 
+
+1. Primeiramente temos que inserir um novo endpoint do tipo **GET**
+
+![inserir-new-request-get.png](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finserir-new-request-get.png)
+
+![insomnia-get.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomnia-get.jpg)
+
+2. Criando a **Environment** (variável de ambiente) do token
+
+![insomnia-var-token-user.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomnia-var-token-user.jpg)
+
+Porém, esse recurso não e muito bem aplicado no casso dessa API, pois toda vez que fazer uma request de autenticação, irá gerar um novo token, podemos solucionar esse problema da seguinte forma, ao invés de usar o token com uma variável, podemos usar um recurso do próprio Insomnia nos disponibilizar
+Que é capturando o atributo de outra requisição
+
+![insomnia-bady-attribute.png](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomnia-bady-attribute.png)
+
+* Configurando o response body attribute
+
+  * Informa qual o **Request** que quer captura o dado
+  * Criar o filtro do dado há ser capturado
+  * Verificar que foi obtido o token com sucesso
+  
+![insomnia-config-attribute-response-body.png](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomnia-config-attribute-response-body.png)
+
+3. Podendo assim facilmente configura as outras requisições do tipo GET
+
+* Por ID de viagem
+
+![insomnia-get-one.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomnia-get-one.jpg)
+
+* Por paramêtro de região 
+
+![insomnia-get-parament.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomnia-get-parament.jpg)
+
+## Cadastrar outras viagens
+
+* Informa o body da requisição
+
+```json
+{
+  "acompanhante": "Maria Inez",
+  "dataPartida": "2023-30-01",
+  "dataRetorno": "2023-28-02",
+  "localDeDestino": "Porto Alegre",
+  "regiao": "Sul"
+}
+```
+
+* Executar o endpoint
+
+![insomina-post-forbidden.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomina-post-forbidden.jpg)
+
+Obtemos um **404 - Forbidden** de acesso negado, pois estamos há cadastrar uma viagem com o token do usuário com previlegios de usuário comum, onde não é permitido cadastra uma viagem
+
+1. Realizando um POST com os dados do administrado, obtemos o seu token
+
+```json
+{
+  "email": "admin@email.com",
+  "senha": "654321"
+}
+```
+
+2. Alterando no **Response => Body Attibute** a requisição que desejamos captura o token
+
+![insomnia-alter-attribute-request.png](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomnia-alter-attribute-request.png)
+
+![insomnia-post-admin.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Finsomnia-post-admin.jpg)
