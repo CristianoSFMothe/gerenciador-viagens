@@ -272,7 +272,6 @@ Nesse casa recebemos esse JSON
 ```
 Onde:
 
-* `-i`, --include	Mostra o header da resposta no output
 * `-d`, --bady	Dados a serem enviados no POST
 * `-H`, --header	Envia o header da requisição
 * `-X`, --request	Especifica o método HTTP a ser usado na requisição
@@ -293,7 +292,7 @@ $ curl -X POST -i http://localhost:8089/api/v1/auth -d '{ "email": "admin@email.
 
 Onde:
 
-* `-i` traz a informação do header 
+* `-i`, --include	Mostra o header da resposta no output
 
 ```bash
 $ curl -X POST -i http://localhost:8089/api/v1/auth -d '{ "email": "admin@email.com", "senha": "654321" }' -H 'Content-Type: application/json'
