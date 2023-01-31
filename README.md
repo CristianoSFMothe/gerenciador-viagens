@@ -730,33 +730,33 @@ Obtemos um **404 - Forbidden** de acesso negado, pois estamos há cadastrar uma 
 
 Podemos também utilizar o <a href="https://www.postman.com/downloads/" target="blank">Postman</a> para testa as nossas APIs, é uma ferrametna grafica assim como **Insomnnia**, que usamos anteriormente.
 
-![postman.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Fpostman.jpg)
+![postman](https://user-images.githubusercontent.com/68359459/215883801-a459dafb-1b55-4651-b917-f14984b27678.jpg)
 
 ## Criando uma Collection
 
 1. Clicar no botão para criar uma nova collection
 
-![postman-home.png](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Fpostman-home.png)
+<img width="965" alt="postman-home" src="https://user-images.githubusercontent.com/68359459/215883846-fddd3737-5a9d-4a25-8bb5-aa072b73a07b.png">
 
 2. Criar uma requisição do tipo POST
 
-![postman-home-add-request.png](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Fpostman-home-add-request.png)
+<img width="965" alt="postman-home-add-request" src="https://user-images.githubusercontent.com/68359459/215883899-c96c052e-8cd6-45c8-a665-aa57ac077a72.png">
 
 3. Executar o endpoint
 
-![postman-login-admin.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Fpostman-login-admin.jpg)
+![postman-login-admin](https://user-images.githubusercontent.com/68359459/215883945-37e09e80-0d1f-446d-a69e-8d87fd3bc658.jpg)
 
 Podemos ver que recebemos o mesmo JSON como resposta que tinhamos no **Insomnia** 
 
 4. Também pode-ser criado variáveis
 
-![postman-criar-var.png](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Fpostman-criar-var.png)
+<img width="965" alt="postman-criar-var" src="https://user-images.githubusercontent.com/68359459/215884009-8f9da202-c0f7-4c2b-95ef-04558b30aeab.png">
 
 ## Cadastrar uma viagem
 
 1. Podendo também criar uma variável para a captura dinâmica do token
 
-![postman-criar-token-var.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Fpostman-criar-token-var.jpg)
+![postman-criar-token-var](https://user-images.githubusercontent.com/68359459/215884060-f08edc1c-005e-45de-b893-4c6134cb0d11.jpg)
 
 * Clica em **Tests**
   * Set a global variable
@@ -768,8 +768,10 @@ pm.globals.set("tokenAdmin", resposta.data.token);
 
 2. Agora pode-se cadastrar viagens
 
-![postman-cadastrar-viagem.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Fpostman-cadastrar-viagem.jpg)
+![postman-cadastrar-viagem](https://user-images.githubusercontent.com/68359459/215884113-5531cfbc-859c-46b5-9604-e917736bf52d.jpg)
 
 3. No **Postman** podemos também criar uma validação do **Status Code**, criando um teste
 
-![postman-status-code-test.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Fpostman-status-code-test.jpg)
+![postman-status-code-test](https://user-images.githubusercontent.com/68359459/215884186-2dc4dc78-5ca1-44ef-a17a-976eb71907ce.jpg)
+
+
