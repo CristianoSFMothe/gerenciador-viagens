@@ -724,3 +724,52 @@ Obtemos um **404 - Forbidden** de acesso negado, pois estamos há cadastrar uma 
 
 ![insomnia-post-admin](https://user-images.githubusercontent.com/68359459/215358246-067e014a-4490-4e81-847c-59ec9558a4d5.jpg)
 
+---
+
+# Postman
+
+Podemos também utilizar o <a href="https://www.postman.com/downloads/" target="blank">Postman</a> para testa as nossas APIs, é uma ferrametna grafica assim como **Insomnnia**, que usamos anteriormente.
+
+![postman.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Fpostman.jpg)
+
+## Criando uma Collection
+
+1. Clicar no botão para criar uma nova collection
+
+![postman-home.png](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Fpostman-home.png)
+
+2. Criar uma requisição do tipo POST
+
+![postman-home-add-request.png](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Fpostman-home-add-request.png)
+
+3. Executar o endpoint
+
+![postman-login-admin.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Fpostman-login-admin.jpg)
+
+Podemos ver que recebemos o mesmo JSON como resposta que tinhamos no **Insomnia** 
+
+4. Também pode-ser criado variáveis
+
+![postman-criar-var.png](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Fpostman-criar-var.png)
+
+## Cadastrar uma viagem
+
+1. Podendo também criar uma variável para a captura dinâmica do token
+
+![postman-criar-token-var.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Fpostman-criar-token-var.jpg)
+
+* Clica em **Tests**
+  * Set a global variable
+  
+```javascript
+const resposta = pm.response.json();
+pm.globals.set("tokenAdmin", resposta.data.token);
+```
+
+2. Agora pode-se cadastrar viagens
+
+![postman-cadastrar-viagem.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Fpostman-cadastrar-viagem.jpg)
+
+3. No **Postman** podemos também criar uma validação do **Status Code**, criando um teste
+
+![postman-status-code-test.jpg](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2Fpostman-status-code-test.jpg)
