@@ -19,7 +19,7 @@
 
 
 
-## :boy:About me
+## :boy: About me
 
 <a href="https://github.com/CristiaDaSilvaFerreira" alt="github" target="_blank"><img height="32" src="https://img.shields.io/badge/GitHub-000000?&style=flat-square&logo=GitHub&logoColor=white"></a> <a href="https://www.linkedin.com/in/cristiano-da-silva-ferreira" alt="linkedin" target="_blank"> <img height="32" src="https://img.shields.io/badge/LinkedIn-%230077B5.svg?&style=flat-square&logo=linkedin&logoColor=white"></a> 
 
